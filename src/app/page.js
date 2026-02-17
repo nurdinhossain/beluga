@@ -48,7 +48,10 @@ export default function Home() {
             {/* Card body */}
             <div className="flex flex-col items-center px-10 py-8">
               <p className="max-w-2xl text-center text-2xl font-medium leading-relaxed sm:text-3xl">
-                Learning is hard. Beluga makes it easier.
+                Learning is hard.{" "}<br/>
+                <span className="underline underline-offset-4">
+                  Beluga makes it easier.
+                </span>
               </p>
               <button
                 type="button"
