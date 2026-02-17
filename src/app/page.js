@@ -21,7 +21,7 @@ export default function Home() {
         </div>
         <button
           type="button"
-          className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+          className="rounded-lg bg-zinc-900/90 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800/90 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
         >
           Login
         </button>
@@ -37,16 +37,26 @@ export default function Home() {
           <div className="pointer-events-none absolute -top-4 -left-4 h-full w-full rounded-2xl bg-white/75 shadow-md ring-1 ring-zinc-200/70" />
 
           {/* Front card with content (front, same size) */}
-          <div className="relative z-10 flex h-full w-full flex-col items-center rounded-2xl bg-white px-10 py-10 shadow-xl ring-1 ring-zinc-200">
-            <p className="max-w-2xl text-center text-2xl font-medium leading-relaxed sm:text-3xl">
-              Learning is hard. Beluga makes it easier.
-            </p>
-            <button
-              type="button"
-              className="mt-8 rounded-lg bg-zinc-900 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-zinc-800"
-            >
-              Sign up today
-            </button>
+          <div className="relative z-10 flex h-full w-full flex-col overflow-hidden rounded-2xl bg-zinc-50 shadow-xl ring-1 ring-zinc-200/80">
+            {/* Mac-style title bar */}
+            <div className="flex w-full items-center gap-2 bg-zinc-900/90 px-4 py-2">
+              <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+              <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+            </div>
+
+            {/* Card body */}
+            <div className="flex flex-col items-center px-10 py-8">
+              <p className="max-w-2xl text-center text-2xl font-medium leading-relaxed sm:text-3xl">
+                Learning is hard. Beluga makes it easier.
+              </p>
+              <button
+                type="button"
+                className="mt-8 rounded-lg bg-zinc-900/90 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-zinc-800/90"
+              >
+                Sign up today
+              </button>
+            </div>
           </div>
         </div>
       </main>
