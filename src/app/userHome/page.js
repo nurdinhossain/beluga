@@ -27,7 +27,22 @@ const PLACEHOLDER_TASKS_MONTH = [
 const PLACEHOLDER_BOT_REPLY =
   "I'm your Beluga study assistant. Ask me about your study sets, schedule, or anything else!";
 
+const PLACEHOLDER_RECENT_FLASHCARDS = [
+  { name: "Biology Ch.3 Terms", lastAccessed: "Today" },
+  { name: "Spanish Vocab Unit 5", lastAccessed: "Yesterday" },
+  { name: "Chemistry Formulas", lastAccessed: "2 days ago" },
+];
+
+const PLACEHOLDER_STUDY_SET_FOLDERS = [
+  { name: "Biology", count: 3 },
+  { name: "Chemistry", count: 2 },
+  { name: "Spanish", count: 4 },
+  { name: "History", count: 1 },
+];
+
 export default function UserHome() {
+  /* left panel: home (recent flashcards) vs study sets (folders) */
+  const [leftSection, setLeftSection] = useState("home");
   /* toggle calendar view */
   const [calendarView, setCalendarView] = useState("day");
 
@@ -60,19 +75,33 @@ export default function UserHome() {
     ]);
   }
 
+  /* return the main component */
   return (
     <main className="flex flex-1 flex-col px-6 py-8">
       {/* Secondary navbar under global header */}
       <nav className="mb-8 flex justify-center">
         <div className="inline-flex items-center gap-8 rounded-full bg-zinc-900/5 px-6 py-3 backdrop-blur-sm">
-          <button className="text-sm font-medium text-zinc-900">
+          <button
+            type="button"
+            onClick={() => setLeftSection("home")}
+            className={`text-sm font-medium transition-colors ${
+              leftSection === "home"
+                ? "text-zinc-900"
+                : "text-zinc-600 hover:text-zinc-900"
+            }`}
+          >
             Home
           </button>
-          <button className="text-sm font-medium text-zinc-600 hover:text-zinc-900">
+          <button
+            type="button"
+            onClick={() => setLeftSection("studySets")}
+            className={`text-sm font-medium transition-colors ${
+              leftSection === "studySets"
+                ? "text-zinc-900"
+                : "text-zinc-600 hover:text-zinc-900"
+            }`}
+          >
             Study sets
-          </button>
-          <button className="text-sm font-medium text-zinc-600 hover:text-zinc-900">
-            Classes
           </button>
         </div>
       </nav>
@@ -80,9 +109,63 @@ export default function UserHome() {
       {/* 3-card grid layout */}
       <section className="flex flex-1 flex-col">
         <div className="grid flex-1 gap-6 md:grid-cols-2">
-          {/* Left large card */}
-          <div className="rounded-2xl bg-white/70 p-6 shadow-md ring-1 ring-zinc-200/70">
-            <div className="h-full w-full rounded-xl border border-dashed border-zinc-300/80" />
+          {/* Left box: Home (recent flashcards) or Study sets (folders) */}
+          <div className="flex min-h-[400px] flex-col overflow-hidden rounded-2xl bg-zinc-50 shadow-md ring-1 ring-zinc-200/80">
+            <div className="flex w-full shrink-0 items-center gap-2 bg-zinc-900/90 px-4 py-2">
+              <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+              <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+            </div>
+            <div className="min-h-0 flex-1 overflow-y-auto p-4">
+              {leftSection === "home" && (
+                <div>
+                  <h2 className="mb-3 text-sm font-semibold text-zinc-500">
+                    Recently accessed
+                  </h2>
+                  <ul className="space-y-2">
+                    {PLACEHOLDER_RECENT_FLASHCARDS.map((card, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center justify-between rounded-lg border border-zinc-200/80 bg-white px-3 py-2 text-sm"
+                      >
+                        <span className="font-medium text-zinc-800">
+                          {card.name}
+                        </span>
+                        <span className="text-xs text-zinc-500">
+                          {card.lastAccessed}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {leftSection === "studySets" && (
+                <div>
+                  <h2 className="mb-3 text-sm font-semibold text-zinc-500">
+                    Your study sets
+                  </h2>
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    {PLACEHOLDER_STUDY_SET_FOLDERS.map((folder, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        className="flex flex-col items-center gap-2 rounded-lg border border-zinc-200/80 bg-white p-4 text-center transition-colors hover:bg-zinc-50"
+                      >
+                        <span className="text-2xl" aria-hidden>
+                          📁
+                        </span>
+                        <span className="text-sm font-medium text-zinc-800">
+                          {folder.name}
+                        </span>
+                        <span className="text-xs text-zinc-500">
+                          {folder.count} set{folder.count !== 1 ? "s" : ""}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Right column with two stacked cards */}
