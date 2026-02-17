@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+/* PLACEHOLDER INFORMATIOn */
 const PLACEHOLDER_TASKS_DAY = [
   { time: "9:00 AM", title: "Review flashcards" },
   { time: "2:00 PM", title: "Practice set: Biology Ch.3" },
@@ -23,8 +24,41 @@ const PLACEHOLDER_TASKS_MONTH = [
   "Week 4: Review & quizzes",
 ];
 
+const PLACEHOLDER_BOT_REPLY =
+  "I'm your Beluga study assistant. Ask me about your study sets, schedule, or anything else!";
+
 export default function UserHome() {
+  /* toggle calendar view */
   const [calendarView, setCalendarView] = useState("day");
+
+  /* toggle who is sending message */
+  const [messages, setMessages] = useState([
+    { role: "bot", text: "Hi! How can I help you today?" },
+  ]);
+
+  /* toggle input */
+  const [input, setInput] = useState("");
+
+  /* contains list of messages */
+  const messageListRef = useRef(null);
+
+  /* scroll to bottom of message list */
+  useEffect(() => {
+    const el = messageListRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages]);
+
+  /* dont send empty messages, trim input, add user message, add bot message */
+  function handleSend() {
+    const trimmed = input.trim();
+    if (!trimmed) return;
+    setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
+    setInput("");
+    setMessages((prev) => [
+      ...prev,
+      { role: "bot", text: PLACEHOLDER_BOT_REPLY },
+    ]);
+  }
 
   return (
     <main className="flex flex-1 flex-col px-6 py-8">
@@ -108,8 +142,49 @@ export default function UserHome() {
               </div>
             </div>
 
-            <div className="flex-1 rounded-2xl bg-white/70 p-6 shadow-md ring-1 ring-zinc-200/70">
-              <div className="h-full w-full rounded-xl border border-dashed border-zinc-300/80" />
+            {/* Bottom-right: Chatbox */}
+            <div className="flex h-[320px] flex-col overflow-hidden rounded-2xl bg-zinc-50 shadow-md ring-1 ring-zinc-200/80">
+              <div className="flex shrink-0 w-full items-center gap-2 bg-zinc-900/90 px-4 py-2">
+                <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+                <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+              </div>
+              <div className="flex min-h-0 flex-1 flex-col p-3">
+                <div
+                  ref={messageListRef}
+                  className="mb-3 min-h-0 flex-1 space-y-2 overflow-y-auto rounded-lg border border-zinc-200/80 bg-white p-3"
+                >
+                  {messages.map((msg, i) => (
+                    <div
+                      key={i}
+                      className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
+                        msg.role === "user"
+                          ? "ml-auto bg-zinc-900/90 text-white"
+                          : "bg-zinc-100 text-zinc-800"
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                    placeholder="Message the chatbot..."
+                    className="flex-1 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-800 placeholder-zinc-400 focus:border-zinc-400 focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleSend}
+                    className="rounded-lg bg-zinc-900/90 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800/90"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
