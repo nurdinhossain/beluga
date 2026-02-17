@@ -9,7 +9,7 @@ export default function Home() {
     >
       {/* Header */}
       <header className="flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
           <Image
             src="/whale.svg"
             alt="Beluga logo"
@@ -19,7 +19,7 @@ export default function Home() {
           <span className="text-xl font-semibold tracking-tight">
             Beluga
           </span>
-        </div>
+        </Link>
         <Link
           href="/login"
           className="rounded-lg bg-zinc-900/90 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800/90 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"

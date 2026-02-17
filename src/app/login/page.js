@@ -1,6 +1,21 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage() {
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log("Google login successful:", tokenResponse);
+      // Here you would typically send the token to your backend
+      // to verify and create/update the user session
+      // For now, we'll just log it
+    },
+    onError: () => {
+      console.error("Google login failed");
+    },
+  });
   return (
     <div
       className="flex min-h-screen flex-col"
@@ -8,7 +23,7 @@ export default function LoginPage() {
     >
       {/* Top-left logo */}
       <header className="flex items-center px-6 py-4">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
           <Image
             src="/whale.svg"
             alt="Beluga logo"
@@ -18,7 +33,7 @@ export default function LoginPage() {
           <span className="text-xl font-semibold tracking-tight">
             Beluga
           </span>
-        </div>
+        </Link>
       </header>
 
       {/* Centered login form */}
@@ -32,6 +47,7 @@ export default function LoginPage() {
             <div className="space-y-4">
               <button
                 type="button"
+                onClick={() => handleGoogleLogin()}
                 className="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-300 bg-white px-5 py-3.5 text-base font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50"
               >
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white">
