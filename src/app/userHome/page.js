@@ -172,10 +172,7 @@ export default function UserHome() {
           <div className="flex flex-col gap-6">
             {/* Top-right: Calendar / tasks for day, week, month */}
             <div className="min-h-[280px] overflow-hidden rounded-2xl bg-zinc-50 shadow-md ring-1 ring-zinc-200/80">
-              <div className="flex w-full items-center gap-2 bg-zinc-900/90 px-4 py-2">
-                <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-                <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+              <div className="flex min-h-[28px] w-full shrink-0 items-center bg-zinc-900/90 px-4 py-2">
               </div>
               <div className="flex min-h-[220px] flex-col p-4">
                 <div className="mb-3 flex gap-1 rounded-lg bg-zinc-200/60 p-1">
@@ -227,10 +224,7 @@ export default function UserHome() {
 
             {/* Bottom-right: Chatbox */}
             <div className="flex h-[320px] flex-col overflow-hidden rounded-2xl bg-zinc-50 shadow-md ring-1 ring-zinc-200/80">
-              <div className="flex shrink-0 w-full items-center gap-2 bg-zinc-900/90 px-4 py-2">
-                <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-                <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+              <div className="flex min-h-[28px] shrink-0 w-full items-center bg-zinc-900/90 px-4 py-2">
               </div>
               <div className="flex min-h-0 flex-1 flex-col p-3">
                 <div
