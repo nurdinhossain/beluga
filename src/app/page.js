@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -19,12 +20,12 @@ export default function Home() {
             Beluga
           </span>
         </div>
-        <button
-          type="button"
+        <Link
+          href="/login"
           className="rounded-lg bg-zinc-900/90 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800/90 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
         >
           Login
-        </button>
+        </Link>
       </header>
 
       {/* Main content - flashcard stack with text + button */}
