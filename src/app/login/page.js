@@ -1,31 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
 export default function LoginPage() {
   return (
-    <div
-      className="flex min-h-screen flex-col"
-      style={{ background: "linear-gradient(to bottom right, #F2B79F, #93B7BE)" }}
-    >
-      {/* Top-left logo */}
-      <header className="flex items-center px-6 py-4">
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <Image
-            src="/whale.svg"
-            alt="Beluga logo"
-            width={32}
-            height={32}
-          />
-          <span className="text-xl font-semibold tracking-tight">
-            Beluga
-          </span>
-        </Link>
-      </header>
-
-      {/* Centered login form */}
-      <main className="flex flex-1 items-center justify-center px-6 py-20 md:px-10 lg:px-16">
+    <main className="flex flex-1 items-center justify-center px-6 py-20 md:px-10 lg:px-16">
         <div className="w-full max-w-md md:max-w-lg rounded-3xl bg-white/85 p-12 md:p-16 shadow-xl ring-1 ring-zinc-200/80">
           <h1 className="mb-8 text-center text-3xl md:text-4xl font-semibold text-zinc-900">
             Sign in
@@ -87,8 +64,7 @@ export default function LoginPage() {
             </button>
           </form>
         </div>
-      </main>
-    </div>
+    </main>
   );
 }
 

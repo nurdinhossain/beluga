@@ -1,32 +1,6 @@
 export default function Home() {
   return (
-    <div
-      className="flex min-h-screen flex-col"
-      style={{ background: "linear-gradient(to bottom right, #F2B79F, #93B7BE)" }}
-    >
-      {/* Header */}
-      <header className="flex items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <Image
-            src="/whale.svg"
-            alt="Beluga logo"
-            width={32}
-            height={32}
-          />
-          <span className="text-xl font-semibold tracking-tight">
-            Beluga
-          </span>
-        </Link>
-        <Link
-          href="/login"
-          className="rounded-lg bg-zinc-900/90 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800/90 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
-        >
-          Login
-        </Link>
-      </header>
-
-      {/* Main content - flashcard stack with text + button */}
-      <main className="flex flex-1 flex-col items-center justify-center px-6 py-16">
+    <main className="flex flex-1 flex-col items-center justify-center px-6 py-16">
         <div className="relative w-full max-w-xl">
           {/* Back card 1 (top) */}
           <div className="pointer-events-none absolute -top-8 -left-8 h-full w-full rounded-2xl bg-white/60 shadow-md ring-1 ring-zinc-200/60" />
@@ -67,6 +41,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </main>
+    </main>
   );
 }
