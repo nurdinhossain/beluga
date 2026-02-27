@@ -15,14 +15,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Changes background/foreground colors if user prefers dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 /* uses background and foregrond colors from variables we defined above */
 body {
   background: var(--background);

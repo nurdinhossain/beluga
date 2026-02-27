@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-
 export default function Home() {
   return (
     <div
@@ -49,7 +46,8 @@ export default function Home() {
             {/* Card body */}
             <div className="flex flex-col items-center px-10 py-8">
               <p className="max-w-2xl text-center text-2xl font-medium leading-relaxed sm:text-3xl">
-                Learning is hard.{" "}<br/>
+                Learning is hard.{" "}
+                <br />
                 <span className="underline underline-offset-4">
                   Beluga makes it easier.
                 </span>
@@ -60,10 +58,15 @@ export default function Home() {
               >
                 Sign up today
               </button>
+              <p className="mt-4 text-sm text-zinc-700">
+                Already a member?{" "}
+                <span className="font-medium underline underline-offset-2">
+                  Login instead!
+                </span>
+              </p>
             </div>
           </div>
         </div>
       </main>
-    </div>
   );
 }
