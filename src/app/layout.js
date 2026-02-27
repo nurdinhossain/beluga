@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
         <div className="flex min-h-screen flex-col">
           {/* Global header */}
           <header className="flex items-center px-6 py-4">
-            <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/whale.svg"
                 alt="Beluga logo"
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
               <span className="text-xl font-semibold tracking-tight">
                 Beluga
               </span>
-            </div>
+            </Link>
           </header>
 
           {children}

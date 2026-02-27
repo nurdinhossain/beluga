@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/* PLACEHOLDER INFORMATIOn */
+/* PLACEHOLDER INFORMATION */
 const PLACEHOLDER_TASKS_DAY = [
   { time: "9:00 AM", title: "Review flashcards" },
   { time: "2:00 PM", title: "Practice set: Biology Ch.3" },
